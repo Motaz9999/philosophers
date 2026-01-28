@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 21:05:01 by moodeh            #+#    #+#             */
-/*   Updated: 2026/01/27 18:23:39 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/01/28 23:08:21 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	main(int argc, char *argv[])
 {
-	t_args	input;
+	t_rules	input;
 
 	if (!check_input(argc, argv, &input))
-		return (false);
+		return (FALSE);
     printf("all input are good \n");
     
 }
