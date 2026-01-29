@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 21:06:57 by moodeh            #+#    #+#             */
-/*   Updated: 2026/01/28 23:31:21 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/01/29 05:11:12 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <strings.h>
-# include <string.h>
 # include <limits.h>
 # include <pthread.h>
 # include <time.h>
 # include <sys/time.h>
+# include <errno.h>
 # define TRUE 1
 # define FALSE 0
 # define MAX_PHILOS 200
@@ -42,11 +41,26 @@ typedef struct s_rules
 typedef struct s_philo
 {
 	int id;//this the name of philo
-	int num_of_meals_have_eaten;//if the phlio eat all the meals (the thread end)
+	int num_of_meals_have_eaten;//if the philo eat all the meals (the thread end)
+	long time_of_start_of_last_meal;//it have the time of the last meal (start of it)
 	pthread_t thread;//here is where i start the thread
-	
-}	t_philo;
+	t_fork *right; // each philo when he trying to eat must have right and left fork 
+	t_fork *left;
+	t_rules *rules_to_read_from;//here i can access the the whole rules
+}	t_philo;//the philos as thread and have it own data
+typedef struct s_fork
+{
+	int fork_id;//any fork must have an id
+	pthread_mutex_t mutexFork;//for each fork must have it own mutex so that one thread can access it
+} t_fork;//here is the forks that any thread can access it 
 
+//check funs	
 t_bool	check_input(int argc, char *argv[], t_rules *philo);
+//time funs
+long gettime_as_ms(void);
+//main funs
+
+//error handle for now 
+t_bool	error_exit(char *msg);
 
 #endif

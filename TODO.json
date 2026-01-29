@@ -1,0 +1,11 @@
+{
+  "todo": [
+    {
+      "id": 17620,
+      "text": "make error handles inside init_philo.c and inside destroy (code with text error) and complete destroy ",
+      "priority": 1,
+      "created": "2026-01-29T02:08:50.254Z"
+    }
+  ],
+  "completed": []
+}
