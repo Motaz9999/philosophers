@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 21:06:57 by moodeh            #+#    #+#             */
-/*   Updated: 2026/01/29 05:11:12 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/01/30 19:00:32 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ typedef struct s_rules
 	long time_to_sleep; // The time a philosopher will spend sleeping
 	long number_of_times_to_eat;// If all philosophers have eaten at least number_of_times_each_philosopher_must_eat times, the simulation stops. If not specified, the simulation stops when a philosopher dies
 	long start_simulation;//here is the time i start to give it to all philos
-	long end_simiulation;// when a one philo dies //or all philos have eat all there meals 
+	long end_simulation;// when a one philo dies //or all philos have eat all there meals
+	int error;//here i store error as exit code soo if i find any error i save here until i exit the program 
  }			t_rules;// ok these rules is for all philos its the same for all 
 //here we check the input
 typedef struct s_philo
@@ -44,14 +45,14 @@ typedef struct s_philo
 	int num_of_meals_have_eaten;//if the philo eat all the meals (the thread end)
 	long time_of_start_of_last_meal;//it have the time of the last meal (start of it)
 	pthread_t thread;//here is where i start the thread
-	t_fork *right; // each philo when he trying to eat must have right and left fork 
-	t_fork *left;
+	t_fork *right_fork; // each philo when he trying to eat must have right and left fork 
+	t_fork *left_fork;
 	t_rules *rules_to_read_from;//here i can access the the whole rules
 }	t_philo;//the philos as thread and have it own data
 typedef struct s_fork
 {
 	int fork_id;//any fork must have an id
-	pthread_mutex_t mutexFork;//for each fork must have it own mutex so that one thread can access it
+	pthread_mutex_t *mutexFork;//for each fork must have it own mutex so that one thread can access it
 } t_fork;//here is the forks that any thread can access it 
 
 //check funs	
@@ -61,6 +62,10 @@ long gettime_as_ms(void);
 //main funs
 
 //error handle for now 
-t_bool	error_exit(char *msg);
+void	error_exit(char *msg , t_rules *rules , t_fork **forks , t_philo **philos);
 
+//destroy
+void destroy_forks(t_fork **forks ,long len_of_arrs);
+void destroy_philos(t_philo **philos ,long len_of_arrs);
+void destroy_and_free_all(t_fork **forks , t_philo **philos , t_rules *rules);//0 on no error else there are
 #endif

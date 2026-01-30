@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 21:37:04 by moodeh            #+#    #+#             */
-/*   Updated: 2026/01/28 23:03:54 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/01/30 18:44:35 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,12 @@ static t_bool	check_for_type(char **argv)
 t_bool	check_input(int argc, char *argv[], t_rules *philo)
 {
 	if (!(argc == 5 || argc == 6))
-		return (FALSE);               // end the program
-	memset(philo, 0, sizeof(t_rules)); // here we make all the vars into 0
-	if (!check_for_type(argv))        // here we check of all the strs are nums
+		return (FALSE);
+	memset(philo, 0, sizeof(t_rules));
+	philo->error = 1;
+	if (!check_for_type(argv))
 		return (FALSE);
 	philo->number_of_philos = ft_atol(argv[1]);
-	// here we make them long to be sure all nums are int
 	philo->time_to_die = ft_atol(argv[2]);
 	philo->time_to_eat = ft_atol(argv[3]);
 	philo->time_to_sleep = ft_atol(argv[4]);
@@ -96,5 +96,6 @@ t_bool	check_input(int argc, char *argv[], t_rules *philo)
 		|| ((argc == 6) && (philo->number_of_times_to_eat <= 0
 				|| philo->number_of_times_to_eat > INT_MAX)))
 		return (FALSE);
+	philo->error = 0;//no error here
 	return (TRUE); // all inputs are valid
 }
