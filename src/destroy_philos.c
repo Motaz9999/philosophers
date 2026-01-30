@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 04:44:40 by moodeh            #+#    #+#             */
-/*   Updated: 2026/01/30 20:27:01 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/01/30 21:22:43 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,9 @@ void	destroy_forks(t_fork **forks, long len_of_arrs)
 		return ;
 	while (i < len_of_arrs)
 	{
-		if ((*forks)[i].mutexFork != NULL)
+		if (&(*forks)[i].mutexFork != NULL)
 		{
-			pthread_mutex_destroy((*forks)[i].mutexFork);
-			free((*forks)[i].mutexFork);
+			pthread_mutex_destroy(&(*forks)[i].mutexFork);
 		}
 		i++;
 	}
@@ -35,7 +34,7 @@ void	destroy_forks(t_fork **forks, long len_of_arrs)
 void	destroy_philos(t_philo **philos, long len_of_arrs)
 {
 	int	i;
-
+    i = 0;
 	if (*philos == NULL)
 		return ;
 	while (i < len_of_arrs)
@@ -51,7 +50,7 @@ void	destroy_philos(t_philo **philos, long len_of_arrs)
 void	destroy_and_free_all(t_fork **forks, t_philo **philos, t_rules *rules)
 // 0 on no error else there are
 {
-	destroy_forks(forks, rules);
-	destroy_philos(philos, rules);
+	destroy_forks(forks, rules->number_of_philos);
+	destroy_philos(philos, rules->number_of_philos);
 	exit(rules->error);
 }

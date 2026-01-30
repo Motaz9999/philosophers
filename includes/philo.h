@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 21:06:57 by moodeh            #+#    #+#             */
-/*   Updated: 2026/01/30 19:00:32 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/01/30 21:07:17 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,18 @@
 # include <time.h>
 # include <sys/time.h>
 # include <errno.h>
+# include <string.h>
 # define TRUE 1
 # define FALSE 0
 # define MAX_PHILOS 200
 
 typedef int	t_bool;
+
+typedef struct s_fork
+{
+	int fork_id;//any fork must have an id
+	pthread_mutex_t mutexFork;//for each fork must have it own mutex so that one thread can access it
+} t_fork;//here is the forks that any thread can access it 
 
 typedef struct s_rules
 {
@@ -49,11 +56,6 @@ typedef struct s_philo
 	t_fork *left_fork;
 	t_rules *rules_to_read_from;//here i can access the the whole rules
 }	t_philo;//the philos as thread and have it own data
-typedef struct s_fork
-{
-	int fork_id;//any fork must have an id
-	pthread_mutex_t *mutexFork;//for each fork must have it own mutex so that one thread can access it
-} t_fork;//here is the forks that any thread can access it 
 
 //check funs	
 t_bool	check_input(int argc, char *argv[], t_rules *philo);
@@ -63,9 +65,13 @@ long gettime_as_ms(void);
 
 //error handle for now 
 void	error_exit(char *msg , t_rules *rules , t_fork **forks , t_philo **philos);
-
+//initialization
+t_bool	fill_forks(t_fork **forks, long num_of_forks);
+t_bool	fill_philos(t_philo **philos, t_fork **forks, t_rules *rules);
+t_bool	init_all(t_philo **philos, t_fork **forks, t_rules *rules);
 //destroy
-void destroy_forks(t_fork **forks ,long len_of_arrs);
-void destroy_philos(t_philo **philos ,long len_of_arrs);
-void destroy_and_free_all(t_fork **forks , t_philo **philos , t_rules *rules);//0 on no error else there are
+void	destroy_forks(t_fork **forks, long len_of_arrs);
+void	destroy_philos(t_philo **philos, long len_of_arrs);
+void	destroy_and_free_all(t_fork **forks, t_philo **philos, t_rules *rules);
+
 #endif

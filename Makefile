@@ -1,22 +1,22 @@
 NAME = philo
 
-CFLAGS = -Wall -Wextra -Werror
+INC = -I includes
+
+CFLAGS = -Wall -Wextra -Werror -g3 $(INC)
 
 CC = cc 
 
-INC = -I includes/
+SRC = src/check_input.c src/destroy_philos.c src/error.c src/inti_philos.c src/philo.c src/time.c 
 
-SRC = src/*.c
-
-OBJ = $(SRC : .c=.o)
+OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
-$(NAME) :
+$(NAME) : $(OBJ)
 	$(CC) $(CFLAGS) $(INC) $(OBJ) -o $(NAME)
 clean:
 	@rm -f $(OBJ)
 fclean : clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 re: fclean all
 
 .PHONY : all clean fclean re
