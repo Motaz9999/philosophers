@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 21:06:57 by moodeh            #+#    #+#             */
-/*   Updated: 2026/01/31 20:26:25 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/01/31 23:54:25 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <sys/time.h>
 # include <errno.h>
 # include <string.h>
+# include "colors.h"
 # define TRUE 1
 # define FALSE 0
 # define MAX_PHILOS 200
@@ -41,7 +42,8 @@ typedef struct s_rules
 	long time_to_sleep; // The time a philosopher will spend sleeping
 	long number_of_times_to_eat;// If all philosophers have eaten at least number_of_times_each_philosopher_must_eat times, the simulation stops. If not specified, the simulation stops when a philosopher dies
 	long start_simulation;//here is the time i start to give it to all philos
-	long end_simulation;// when a one philo dies //or all philos have eat all there meals
+	t_bool end_simulation;// when a one philo dies //or all philos have eat all there meals
+	pthread_mutex_t mutex_end;
 	int error;//here i store error as exit code soo if i find any error i save here until i exit the program
 	pthread_mutex_t mutexPrint;//soo i can use printf inside each philos and there is no data trace 
  }			t_rules;// ok these rules is for all philos its the same for all 
@@ -74,5 +76,11 @@ t_bool	init_all(t_philo **philos, t_fork **forks, t_rules *rules);
 void	destroy_forks(t_fork **forks, long len_of_arrs);
 void	destroy_philos(t_philo **philos, long len_of_arrs);
 void	destroy_and_free_all(t_fork **forks, t_philo **philos, t_rules *rules);
+//helper
+void release_forks(t_philo *philo);
+void eating(t_philo *philo);
+void	take_forks(t_philo *philo);
+void	thinking(t_philo *philo);
+void	print_state(t_philo *p, char *color, char *msg);
 
 #endif

@@ -1,6 +1,20 @@
 {
   "todo": [
     {
+      "id": 18514,
+      "text": "add mont thread to check on all threads",
+      "priority": 1,
+      "created": "2026-01-31T20:56:54.594Z"
+    }
+  ],
+  "completed": [
+    {
+      "id": 17620,
+      "text": "make error handles inside init_philo.c and inside destroy (code with text error) and complete destroy ",
+      "priority": 1,
+      "created": "2026-01-29T02:08:50.254Z"
+    },
+    {
       "id": 18183,
       "text": "fix the deadlock that gonna happen",
       "priority": 1,
@@ -11,14 +25,6 @@
       "text": "now implemnt the threades ",
       "priority": 1,
       "created": "2026-01-30T18:27:22.741Z"
-    }
-  ],
-  "completed": [
-    {
-      "id": 17620,
-      "text": "make error handles inside init_philo.c and inside destroy (code with text error) and complete destroy ",
-      "priority": 1,
-      "created": "2026-01-29T02:08:50.254Z"
     }
   ]
 }
