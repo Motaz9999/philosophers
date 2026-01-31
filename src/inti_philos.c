@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 03:31:34 by moodeh            #+#    #+#             */
-/*   Updated: 2026/01/30 21:16:48 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/01/31 18:59:54 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ t_bool	fill_philos(t_philo **philos, t_fork **forks, t_rules *rules)
 
 t_bool	init_all(t_philo **philos, t_fork **forks, t_rules *rules)
 {
-	rules->error = 2; // here the error if anything goes wrong
 	*philos = malloc(sizeof(t_philo) * rules->number_of_philos);
 	if (*philos == NULL)
 		return (FALSE);

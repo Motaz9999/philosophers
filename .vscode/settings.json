@@ -1,5 +1,12 @@
 {
     "cSpell.words": [
         "moodeh"
+    ],
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/motaz/core/philosophers",
+            "binaryPath": "/home/motaz/core/philosophers/philo",
+            "binaryArgs": []
+        }
     ]
 }

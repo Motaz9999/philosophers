@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 04:44:40 by moodeh            #+#    #+#             */
-/*   Updated: 2026/01/30 21:22:43 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/01/31 19:01:46 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	destroy_philos(t_philo **philos, long len_of_arrs)
 {
 	int	i;
     i = 0;
-	if (*philos == NULL)
+	if (!philos||!*philos)
 		return ;
 	while (i < len_of_arrs)
 	{
@@ -52,5 +52,7 @@ void	destroy_and_free_all(t_fork **forks, t_philo **philos, t_rules *rules)
 {
 	destroy_forks(forks, rules->number_of_philos);
 	destroy_philos(philos, rules->number_of_philos);
+	pthread_mutex_destroy(&rules->mutexPrint);
+	printf("end the whole simulation \n");
 	exit(rules->error);
 }

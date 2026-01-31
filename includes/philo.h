@@ -6,18 +6,17 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 21:06:57 by moodeh            #+#    #+#             */
-/*   Updated: 2026/01/30 21:07:17 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/01/31 20:26:25 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
-//# include <pthread.h>
+# include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
-# include <pthread.h>
 # include <time.h>
 # include <sys/time.h>
 # include <errno.h>
@@ -43,7 +42,8 @@ typedef struct s_rules
 	long number_of_times_to_eat;// If all philosophers have eaten at least number_of_times_each_philosopher_must_eat times, the simulation stops. If not specified, the simulation stops when a philosopher dies
 	long start_simulation;//here is the time i start to give it to all philos
 	long end_simulation;// when a one philo dies //or all philos have eat all there meals
-	int error;//here i store error as exit code soo if i find any error i save here until i exit the program 
+	int error;//here i store error as exit code soo if i find any error i save here until i exit the program
+	pthread_mutex_t mutexPrint;//soo i can use printf inside each philos and there is no data trace 
  }			t_rules;// ok these rules is for all philos its the same for all 
 //here we check the input
 typedef struct s_philo
@@ -61,6 +61,7 @@ typedef struct s_philo
 t_bool	check_input(int argc, char *argv[], t_rules *philo);
 //time funs
 long gettime_as_ms(void);
+long ft_usleep(long ms_time);
 //main funs
 
 //error handle for now 
