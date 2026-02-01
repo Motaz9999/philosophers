@@ -1,6 +1,12 @@
 {
   "todo": [
     {
+      "id": 17808,
+      "text": "Saved working directory and index state WIP on main: 5554c69 add colors and print and handle deadlocks and fixes some problems",
+      "priority": 1,
+      "created": "2026-02-01T19:07:34.903Z"
+    },
+    {
       "id": 18514,
       "text": "add mont thread to check on all threads",
       "priority": 1,

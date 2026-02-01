@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 21:37:04 by moodeh            #+#    #+#             */
-/*   Updated: 2026/01/31 19:00:45 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/02/02 00:25:29 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static t_bool	ft_isdigit(int dig)
 		return (TRUE);
 	return (FALSE);
 }
+
 static long	ft_atol(const char *str)
 {
 	long	result;
@@ -96,8 +97,6 @@ t_bool	check_input(int argc, char *argv[], t_rules *philo)
 		|| ((argc == 6) && (philo->number_of_times_to_eat <= 0
 				|| philo->number_of_times_to_eat > INT_MAX)))
 		return (FALSE);
-	if (pthread_mutex_init(&philo->mutexPrint, NULL) != 0)
-		return (0);
-	philo->error = 0; // no error here
-	return (TRUE);    // all inputs are valid
+	philo->error = 0;
+	return (TRUE);
 }

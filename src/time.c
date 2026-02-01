@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 23:19:05 by moodeh            #+#    #+#             */
-/*   Updated: 2026/01/31 20:25:02 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/02/01 23:48:07 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ long	gettime_as_ms(void)
 	struct timeval tv;       // this time variable that can access the next fun
 	gettimeofday(&tv, NULL);
 		// now the tv have value as sec and i want it as millisec
-	return (tv.tv_sec * 1000 + tv.tv_sec / 1000);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }

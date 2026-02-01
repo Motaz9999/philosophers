@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 04:44:40 by moodeh            #+#    #+#             */
-/*   Updated: 2026/01/31 23:23:41 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/02/02 00:23:28 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	destroy_forks(t_fork **forks, long len_of_arrs)
 		return ;
 	while (i < len_of_arrs)
 	{
-		if (&(*forks)[i].mutexFork != NULL)
+		if (&(*forks)[i].mutex_fork != NULL)
 		{
-			pthread_mutex_destroy(&(*forks)[i].mutexFork);
+			pthread_mutex_destroy(&(*forks)[i].mutex_fork);
 		}
 		i++;
 	}
@@ -41,6 +41,7 @@ void	destroy_philos(t_philo **philos, long len_of_arrs)
 	{
 		if ((*philos)[i].thread != 0)
 			pthread_join((*philos)[i].thread, NULL);
+		pthread_mutex_destroy(&(*philos)[i].mutex_meal);//bc i finish from it
 		i++;
 	}
     free(*philos);
@@ -52,8 +53,7 @@ void	destroy_and_free_all(t_fork **forks, t_philo **philos, t_rules *rules)
 {
 	destroy_forks(forks, rules->number_of_philos);
 	destroy_philos(philos, rules->number_of_philos);
-	pthread_mutex_destroy(&rules->mutexPrint);
+	pthread_mutex_destroy(&rules->mutex_print);
 	pthread_mutex_destroy(&rules->mutex_end);
-	printf("end the whole simulation \n");
-	exit(rules->error);
+	printf("end the whole destroy \n");
 }

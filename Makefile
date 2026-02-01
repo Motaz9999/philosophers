@@ -2,11 +2,11 @@ NAME = philo
 
 INC = -I includes
 
-CFLAGS = -Wall -Wextra -Werror -g3 $(INC)
+CFLAGS =  -g3 $(INC)
 
 CC = cc 
 
-SRC = src/check_input.c src/destroy_philos.c src/error.c src/inti_philos.c src/philo.c src/time.c 
+SRC = src/check_input.c  src/destroy_philos.c  src/error.c  src/inti_philos.c  src/philo.c  src/philo_helper.c  src/time.c
 
 OBJ = $(SRC:.c=.o)
 

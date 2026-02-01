@@ -6,36 +6,29 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 21:05:01 by moodeh            #+#    #+#             */
-/*   Updated: 2026/01/31 23:56:02 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/02/02 01:04:44 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-void* routine_monitor(void *args)
+void* routine_montior(void *args)
 {}
-
 void* routine(void *args)
 {
 	t_philo *philo;
-	int i; 
-	i =0;
+
 	philo = (t_philo*)args;
-	while (checking_for_cond(philo))
+	while (1)
 	{
-		//for each thread i have 4 condition
-		//1 .think btw the think time is the time we waiting for forks to be available 
-		thinking(philo);//its just print its waiting and the actually waiting is in take forks fun
-		//2 .take forks
-		take_forks(philo);//now he can eat bc he have 2 forks
-		//3 .eating
+
+		thinking(philo);
+
+		take_forks(philo);
 		eating(philo);
 		ft_usleep(philo->rules_to_read_from->time_to_eat);
-		//4 .put the forks
 		release_forks(philo);
-		//5 . sleeping after eating
 		print_state(philo , GRAY , "is sleeping");
 		ft_usleep(philo->rules_to_read_from->time_to_sleep);
-		//we continue the loop
 	}
 	return NULL;
 }
@@ -66,12 +59,12 @@ int	main(int argc, char *argv[])
 
 	philos = NULL;
 	forks = NULL;
-	rules.error = 2; // here the error if anything goes wrong
 	if (!check_input(argc, argv, &rules))
 		error_exit("error in the input",&rules,&forks,&philos);//here i make sure that in the begging to set philos and fork to null and error to 1
 	if (!init_all(&philos , &forks , &rules))
 		error_exit("error with init all fun" , &rules , &forks , &philos);
-	printf("all input are good \n");//remove it later
-	start_simulation(&philos , &forks , &rules);
+	
+	printf("all input are good \n");
+//	start_simulation(&philos , &forks , &rules);
 	destroy_and_free_all(&forks , &philos , &rules);
 }
