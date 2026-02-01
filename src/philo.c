@@ -6,14 +6,26 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 21:05:01 by moodeh            #+#    #+#             */
-/*   Updated: 2026/02/02 01:40:13 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/02/02 02:05:28 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+// ok in this thread i want to check on other threads
+//first loop is for the thread for goes forever or until he find another one
+// 1. i need to check on the death of philos
+
 void	*routine_monitor(void *args)
 {
+	int		i;
+	t_rules	*rules;
+
+	rules = (t_rules *)args;
+	while (TRUE)
+	{
+		i = 0;
+	}
 	return (NULL);
 }
 
@@ -27,7 +39,6 @@ void	*routine(void *args)
 		thinking(philo);
 		take_forks(philo);
 		eating(philo);
-		ft_usleep(philo->rules_to_read_from->time_to_eat);
 		release_forks(philo);
 		print_state(philo, GRAY, "is sleeping");
 		ft_usleep(philo->rules_to_read_from->time_to_sleep);
