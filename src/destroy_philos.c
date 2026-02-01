@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 04:44:40 by moodeh            #+#    #+#             */
-/*   Updated: 2026/02/02 00:23:28 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/02/02 01:19:05 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	destroy_philos(t_philo **philos, long len_of_arrs)
 void	destroy_and_free_all(t_fork **forks, t_philo **philos, t_rules *rules)
 // 0 on no error else there are
 {
-	destroy_forks(forks, rules->number_of_philos);
 	destroy_philos(philos, rules->number_of_philos);
+	destroy_forks(forks, rules->number_of_philos);
 	pthread_mutex_destroy(&rules->mutex_print);
 	pthread_mutex_destroy(&rules->mutex_end);
 	printf("end the whole destroy \n");

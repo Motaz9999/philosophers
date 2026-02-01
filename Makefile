@@ -2,7 +2,7 @@ NAME = philo
 
 INC = -I includes
 
-CFLAGS =  -g3 $(INC)
+CFLAGS = -g3 $(INC)
 
 CC = cc 
 

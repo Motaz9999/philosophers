@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:14:49 by moodeh            #+#    #+#             */
-/*   Updated: 2026/02/02 00:31:25 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/02/02 01:43:53 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,10 @@ void	take_forks(t_philo *philo)
 }
 void eating(t_philo *philo)
 {//add mutex here
+	pthread_mutex_lock(&philo->mutex_meal);
     philo->meals_eat++;
     philo->time_of_meal = gettime_as_ms();
+	pthread_mutex_unlock(&philo->mutex_meal);
     print_state(philo , GREEN , "is eating");
 }
 
@@ -57,7 +59,7 @@ void release_forks(t_philo *philo)
 		pthread_mutex_unlock(&philo->left_fork->mutex_fork);
 		pthread_mutex_unlock(&philo->right_fork->mutex_fork);
 	}
-	else//even
+	else
 	{
 		pthread_mutex_unlock(&philo->right_fork->mutex_fork);
 		pthread_mutex_unlock(&philo->left_fork->mutex_fork);

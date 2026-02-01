@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 21:06:57 by moodeh            #+#    #+#             */
-/*   Updated: 2026/02/02 00:08:39 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/02/02 01:22:06 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ long ft_usleep(long ms_time);
 //main funs
 
 //error handle for now 
-void	error_exit(char *msg , t_rules *rules , t_fork **forks , t_philo **philos);
+void	error_exit(char *msg, t_rules *rules, t_fork **forks, t_philo **philos);
 //initialization
 t_bool	fill_forks(t_fork **forks, long num_of_forks);
 t_bool	fill_philos(t_philo **philos, t_fork **forks, t_rules *rules);
