@@ -75,14 +75,13 @@ make re
 ## Resources
 
 ### Classic References
-- [Dining Philosophers Problem - Wikipedia](https://en.wikipedia.org/wiki/Dining_philosophers_problem)
-- [POSIX Threads Programming](https://hpc-tutorials.llnl.gov/posix/)
 - [Mutex Tutorial](https://www.geeksforgeeks.org/mutex-lock-for-linux-thread-synchronization/)
 - [Mutexes and Condition Variables](https://www.man7.org/linux/man-pages/man3/pthread_mutex_lock.3p.html) - The official `man` pages are an invaluable 
-- [Visualizing Processes with fork()](https://www.youtube.com/watch?v=cex9T-i_y7I) - A great YouTube video that visually explains how the `fork()` system 
 - [Threads and `pthread` Introduction](https://www.youtube.com/watch?v=It0OFCbbTJE) - An introductory video on the basics of using threads in C.
 - [Philosophers Project Guide (Notion)](https://suspectedoceano.notion.site/Philosophers-b1bf3c57eee6420cafa7d0900b3d3216) - A detailed breakdown and guide for the Philosophers project.
-- [POSIX Threads Programming](https://hpc-tutorials.llnl.gov/posix/) - A comprehensive tutorial on pthreads, which is the core of this project.
+- [Unix Threads in C](https://www.youtube.com/playlist?list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2) - a playlist to explain threads in c
+- [Unix Processes in C](https://www.youtube.com/playlist?list=PLfqABt5AS4FkW5mOn2Tn9ZZLLDwA3kZUY)- a playlist to explain process in c
+- [github repo by DeRuina](https://github.com/DeRuina/philosophers) - it help me to understand more
 ### Documentation
 - `pthread_create()` - Create a new thread
 - `pthread_join()` - Wait for thread termination
