@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 21:06:57 by moodeh            #+#    #+#             */
-/*   Updated: 2026/02/02 01:22:06 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/02/02 03:58:34 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,10 @@ void eating(t_philo *philo);
 void	take_forks(t_philo *philo);
 void	thinking(t_philo *philo);
 void	print_state(t_philo *p, char *color, char *msg);
-
+//state checking
+t_bool	check_philo_death(t_philo *philo);
+t_bool	is_simulation_stopped(t_rules *rules);
+t_bool	all_philos_full(t_rules *rules);
+void	set_death_flag(t_rules *rules, int flag);
+void print_death(t_philo *philo);
 #endif

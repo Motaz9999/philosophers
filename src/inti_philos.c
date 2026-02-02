@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 03:31:34 by moodeh            #+#    #+#             */
-/*   Updated: 2026/02/02 01:42:13 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/02/02 05:33:27 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ t_bool	fill_philos(t_philo **philos, t_fork **forks, t_rules *rules)
 		{
 			destroy_forks(forks, rules->number_of_philos);
 			destroy_philos(philos, i);
+			return FALSE;
 		}
 		i++;
 	}
@@ -69,7 +70,7 @@ t_bool	init_mutex(t_rules *rules, t_fork **forks)
 		destroy_philos(&rules->philos, rules->number_of_philos);
 		return (FALSE);
 	}
-	if (pthread_mutex_init(&rules->mutex_print, NULL))
+	if (pthread_mutex_init(&rules->mutex_print, NULL) != 0)
 	{
 		destroy_forks(forks, rules->number_of_philos);
 		destroy_philos(&rules->philos, rules->number_of_philos);

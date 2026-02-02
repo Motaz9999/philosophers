@@ -6,14 +6,14 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 21:05:01 by moodeh            #+#    #+#             */
-/*   Updated: 2026/02/02 02:05:28 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/02/02 05:30:16 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 // ok in this thread i want to check on other threads
-//first loop is for the thread for goes forever or until he find another one
+// first loop is for the thread for goes forever or until he find another one
 // 1. i need to check on the death of philos
 
 void	*routine_monitor(void *args)
@@ -25,6 +25,22 @@ void	*routine_monitor(void *args)
 	while (TRUE)
 	{
 		i = 0;
+		while (i < rules->number_of_philos)
+		{
+			if (check_philo_death(&rules->philos[i]))
+			{
+				set_death_flag(rules, 1);
+				print_death(&rules->philos[i]);
+				return (NULL);
+			}
+			i++;
+		}
+		if (rules->number_of_times_to_eat > 0 && all_philos_full(rules))
+		{
+			set_death_flag(rules, 1);
+			return (NULL);
+		}
+	ft_usleep(1); // check every 1ms
 	}
 	return (NULL);
 }
@@ -34,14 +50,19 @@ void	*routine(void *args)
 	t_philo	*philo;
 
 	philo = (t_philo *)args;
-	while (1)
+	if (philo->id % 2 == 0)
+		ft_usleep(10);
+	while (!is_simulation_stopped(philo->rules_to_read_from))
 	{
-		thinking(philo);
+		if (philo->rules_to_read_from->number_of_philos == 1)
+			return (NULL);
 		take_forks(philo);
 		eating(philo);
 		release_forks(philo);
 		print_state(philo, GRAY, "is sleeping");
 		ft_usleep(philo->rules_to_read_from->time_to_sleep);
+		thinking(philo);
+
 	}
 	return (NULL);
 }
@@ -63,7 +84,7 @@ t_bool	start_simulation(t_philo **philos, t_fork **forks, t_rules *rules)
 		(*philos)[i].meals_eat = 0;
 		pthread_mutex_unlock(&(*philos)[i].mutex_meal);
 		if (pthread_create(&(*philos)[i].thread, NULL, &routine,
-				(philos)[i]) != 0)
+				&(*philos)[i]) != 0)
 			error_exit("error in create thread", rules, forks, philos);
 		i++;
 	}
@@ -82,11 +103,9 @@ int	main(int argc, char *argv[])
 	philos = NULL;
 	forks = NULL;
 	if (!check_input(argc, argv, &rules))
-		error_exit("error in the input", &rules, &forks, &philos);
-	// here i make sure that in the begging to set philos and fork to null and error to 1
+		exit(rules.error);
 	if (!init_all(&philos, &forks, &rules))
-		error_exit("error with init all fun", &rules, &forks, &philos);
-	printf("all input are good \n");
+		exit(rules.error);
 	start_simulation(&philos, &forks, &rules);
 	destroy_and_free_all(&forks, &philos, &rules);
 	exit(rules.error);

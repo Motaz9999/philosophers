@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 05:10:14 by moodeh            #+#    #+#             */
-/*   Updated: 2026/02/02 01:41:44 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/02/02 05:27:18 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	error_exit(char *msg, t_rules *rules, t_fork **forks, t_philo **philos)
 {
 	int	i;
 
+	i = 0;
 	while (philos[i]->thread != 0)
 		i++;
 	printf("Error: %s\n", msg);

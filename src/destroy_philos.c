@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 04:44:40 by moodeh            #+#    #+#             */
-/*   Updated: 2026/02/02 01:19:05 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/02/02 05:34:40 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,19 @@ void	destroy_forks(t_fork **forks, long len_of_arrs)
 void	destroy_philos(t_philo **philos, long len_of_arrs)
 {
 	int	i;
-    i = 0;
-	if (!philos||!*philos)
+
+	i = 0;
+	if (!philos || !*philos)
 		return ;
 	while (i < len_of_arrs)
 	{
 		if ((*philos)[i].thread != 0)
 			pthread_join((*philos)[i].thread, NULL);
-		pthread_mutex_destroy(&(*philos)[i].mutex_meal);//bc i finish from it
+		pthread_mutex_destroy(&(*philos)[i].mutex_meal); // bc i finish from it
 		i++;
 	}
-    free(*philos);
-    *philos = NULL;
+	free(*philos);
+	*philos = NULL;
 }
 
 void	destroy_and_free_all(t_fork **forks, t_philo **philos, t_rules *rules)
@@ -55,5 +56,4 @@ void	destroy_and_free_all(t_fork **forks, t_philo **philos, t_rules *rules)
 	destroy_forks(forks, rules->number_of_philos);
 	pthread_mutex_destroy(&rules->mutex_print);
 	pthread_mutex_destroy(&rules->mutex_end);
-	printf("end the whole destroy \n");
 }
