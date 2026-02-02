@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 03:49:23 by moodeh            #+#    #+#             */
-/*   Updated: 2026/02/02 05:31:24 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/02/02 20:32:17 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ t_bool	check_philo_death(t_philo *philo)
 	is_dead = FALSE; // here this mean that the philo isnt dead
 	pthread_mutex_lock(&philo->mutex_meal);
 	time_now = gettime_as_ms();
-	if ((time_now
-			- philo->time_of_meal) >= philo->rules_to_read_from->time_to_die)
+	if ((time_now - philo->time_of_meal) >= philo->rules_to_read_from->time_to_die)
 		is_dead = TRUE; // now it is dead
 	pthread_mutex_unlock(&philo->mutex_meal);
 	return (is_dead);
@@ -74,6 +73,6 @@ void	print_death(t_philo *p)
 {
 	pthread_mutex_lock(&p->rules_to_read_from->mutex_print);    
 	printf("%s%ld %d %s%s\n", RED, gettime_as_ms()
-		- p->rules_to_read_from->start_simulation, p->id, "is dead", RESET);
+		- p->rules_to_read_from->start_simulation, p->id, "is died", RESET);
 	pthread_mutex_unlock(&p->rules_to_read_from->mutex_print);
 }
