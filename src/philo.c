@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 21:05:01 by moodeh            #+#    #+#             */
-/*   Updated: 2026/02/02 20:33:20 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/02/03 03:26:52 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*routine_monitor(void *args)
 		i = 0;
 		while (i < rules->number_of_philos)
 		{
-			if (check_philo_death(&rules->philos[i]))
+			if (check_philo_death(&rules->philos[i]) || rules->number_of_philos == 1)
 			{
 				set_death_flag(rules, 1);
 				print_death(&rules->philos[i]);

@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:14:49 by moodeh            #+#    #+#             */
-/*   Updated: 2026/02/02 21:13:53 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/02/03 03:26:48 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	take_forks(t_philo *philo)
 		pthread_mutex_lock(&philo->right_fork->mutex_fork);
 		print_state(philo, CYAN, "has taken fork");
 		ft_usleep(philo->rules_to_read_from->time_to_die);
-			// i will kill it before it trt to take another fork
 		pthread_mutex_unlock(&philo->right_fork->mutex_fork);
 		return ;
 	}
