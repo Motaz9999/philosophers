@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 21:05:01 by moodeh            #+#    #+#             */
-/*   Updated: 2026/02/03 03:26:52 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/02/04 23:15:37 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	*routine_monitor(void *args)
 		i = 0;
 		while (i < rules->number_of_philos)
 		{
-			if (check_philo_death(&rules->philos[i]) || rules->number_of_philos == 1)
+			if (check_philo_death(&rules->philos[i])
+				|| rules->number_of_philos == 1)
 			{
 				set_death_flag(rules, 1);
 				print_death(&rules->philos[i]);
@@ -48,21 +49,21 @@ void	*routine_monitor(void *args)
 void	*routine(void *args)
 {
 	t_philo	*philo;
-	int meals;
-	
+	int		meals;
+
 	philo = (t_philo *)args;
-	if (philo->id % 2 == 0)//even wait
+	if (philo->id % 2 == 0) // even wait
 		ft_usleep(philo->rules_to_read_from->time_to_eat / 2);
 	while (!is_simulation_stopped(philo->rules_to_read_from))
 	{
 		if (philo->rules_to_read_from->number_of_times_to_eat > 0)
-        {
-            pthread_mutex_lock(&philo->mutex_meal);
-            meals = philo->meals_eat;
-            pthread_mutex_unlock(&philo->mutex_meal);
-            if (meals >= philo->rules_to_read_from->number_of_times_to_eat)
-                break;
-        }
+		{
+			pthread_mutex_lock(&philo->mutex_meal);
+			meals = philo->meals_eat;
+			pthread_mutex_unlock(&philo->mutex_meal);
+			if (meals >= philo->rules_to_read_from->number_of_times_to_eat)
+				break ;
+		}
 		take_forks(philo);
 		eating(philo);
 		release_forks(philo);
@@ -109,9 +110,15 @@ int	main(int argc, char *argv[])
 	philos = NULL;
 	forks = NULL;
 	if (!check_input(argc, argv, &rules))
+	{
+		printf("Error in input \n");
 		exit(rules.error);
+	}
 	if (!init_all(&philos, &forks, &rules))
+	{
+		printf("Error in init \n");
 		exit(rules.error);
+	}
 	start_simulation(&philos, &forks, &rules);
 	destroy_and_free_all(&forks, &philos, &rules);
 	exit(rules.error);
