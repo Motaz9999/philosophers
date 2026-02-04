@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 21:37:04 by moodeh            #+#    #+#             */
-/*   Updated: 2026/02/02 04:47:19 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/02/04 23:46:19 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,11 @@ t_bool	check_input(int argc, char *argv[], t_rules *philo)
 		philo->number_of_times_to_eat = ft_atol(argv[5]);
 	else
 		philo->number_of_times_to_eat = -1;
-	if ((philo->number_of_philos > MAX_PHILOS || philo->number_of_philos < 1)
-		|| (philo->time_to_die <= 0 || philo->time_to_die > INT_MAX)
-		|| (philo->time_to_eat > INT_MAX || philo->time_to_eat <= 0)
-		|| philo->time_to_sleep > INT_MAX || philo->time_to_sleep <= 0
-		|| ((argc == 6) && (philo->number_of_times_to_eat <= 0
+	if (philo->number_of_philos < 1 || (philo->time_to_die <= 0
+			|| philo->time_to_die > INT_MAX) || (philo->time_to_eat > INT_MAX
+			|| philo->time_to_eat <= 0) || philo->time_to_sleep > INT_MAX
+		|| philo->time_to_sleep <= 0 || ((argc == 6)
+			&& (philo->number_of_times_to_eat <= 0
 				|| philo->number_of_times_to_eat > INT_MAX)))
 		return (FALSE);
 	philo->error = 0;

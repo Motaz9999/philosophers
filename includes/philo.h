@@ -6,7 +6,7 @@
 /*   By: moodeh <moodeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 21:06:57 by moodeh            #+#    #+#             */
-/*   Updated: 2026/02/02 03:58:34 by moodeh           ###   ########.fr       */
+/*   Updated: 2026/02/04 23:46:28 by moodeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include "colors.h"
 # define TRUE 1
 # define FALSE 0
-# define MAX_PHILOS 200
 
 typedef int	t_bool;
 typedef struct s_rules t_rules;
